@@ -2,11 +2,42 @@
 
 ### Display the ProductName and CategoryName for all products in the database. Shows 76 records.
 
-### Display the OrderID and ShipperName for all orders placed before January 9, 1997. Shows 161 records.
+select p.productname, c.categoryname from products as p join categories as c on p.categoryid = c.categoryid
+
+SELECT p.productname,
+       c.categoryname
+FROM products AS p
+JOIN categories AS c ON p.categoryid = c.categoryid
+
+### Display the OrderID and ShipperName for all orders placed before January 9, 1997 (1997-01-09). Shows 161 records.
+
+SELECT o.orderid, s.shippername from orders as o join shippers as s on o.shipperid = s.shipperid where o.orderdate < '1997-01-09'
+
+SELECT o.orderid,
+       s.shippername
+FROM orders AS o
+JOIN shippers AS s ON o.shipperid = s.shipperid
+WHERE o.orderdate < '1997-01-09'
 
 ### Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
 
+select o.orderid, o.quantity, p.productname from orderdetails as o join products as p on o.productid = p.productid where o.orderid = 10251
+
+SELECT o.orderid,
+       o.quantity,
+       p.productname
+FROM orderdetails AS o
+JOIN products AS p ON o.productid = p.productid
+WHERE o.orderid = 10251
+
 ### Display the OrderID, CustomerName and the employee's LastName for every order. All columns should be labeled clearly. Displays 196 records.
+
+SELECT o.orderid,
+       c.customername,
+       e.lastname AS employee_last_name
+FROM orders AS o
+JOIN customers AS c ON o.customerid = c.customerid
+JOIN employees AS e ON o.employeeid = e.employeeid
 
 ### (Stretch)  Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
 
